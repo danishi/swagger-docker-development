@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+  swagger-editor:
+    image: swaggerapi/swagger-editor:latest
+    container_name: swagger-editor
+    ports:
+      - "8001:8080"
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    container_name: swagger-ui
+    ports:
+      - "8002:8080"
+    volumes:
+      - ./swagger.yaml:/swagger.yaml
+    environment:
+      SWAGGER_JSON: /swagger.yaml
+
+  redoc:
+    image: redocly/redoc:latest
+    container_name: redoc
+    ports:
+      - "8003:80"
+    volumes:
+      - ./swagger.yaml:/usr/share/nginx/html/swagger.yaml
+    environment:
+      SPEC_URL: swagger.yaml
+
+  swagger-codegen:
+    image: swaggerapi/swagger-codegen-cli-v3
+    container_name: swagger-codegen
+    command:
+      - "generate"
+      - "-l"
+      - "nodejs-server"
+      - "-i"
+      - "/swagger.yaml"
+      - "-o"
+      - "/mock/"
+    volumes:
+      - ./swagger.yaml:/swagger.yaml
+      - ./mock/:/mock/
+
+  api-mock-server:
+    image: node:14.2.0-alpine3.10
+    container_name: api-mock-server
+    working_dir: /mock
+    command: npm start
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./mock/:/mock
+    depends_on:
+      - "swagger-codegen"
