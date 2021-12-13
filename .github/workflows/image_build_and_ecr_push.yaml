@@ -20,7 +20,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Generate mock
-      run: docker run --rm -v ./swagger.yaml:/swagger.yaml ./mock/:/mock/ swaggerapi/swagger-codegen-cli generate -l nodejs-server -i /swagger.yaml -o /mock/
+      run: docker run --rm -v ./swagger.yaml:/swagger.yaml -v ./mock/:/mock/ swaggerapi/swagger-codegen-cli-v3 generate -l nodejs-server -i /swagger.yaml -o /mock/
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
