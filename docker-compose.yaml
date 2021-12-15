@@ -53,3 +53,16 @@ services:
       - ./mock/:/mock
     depends_on:
       - "swagger-codegen"
+
+  prism:
+    image: stoplight/prism:4
+    container_name: prism
+    command:
+      - "mock"
+      - "-h"
+      - "0.0.0.0"
+      - "/swagger.yaml"
+    ports:
+      - "8004:4010"
+    volumes:
+      - ./swagger.yaml:/swagger.yaml

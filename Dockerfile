@@ -1,10 +1,8 @@
-# api-mock-server
-FROM node:14.2.0-alpine3.10
+# Prism-mock-server
+FROM stoplight/prism:4
 
-ADD ./mock/ /mock
+ADD ./swagger.yaml /swagger.yaml
 
-WORKDIR /mock
+EXPOSE 4010
 
-EXPOSE 8080
-
-CMD ["npm", "start"]
+CMD ["mock", "-h", "0.0.0.0", "/swagger.yaml"]

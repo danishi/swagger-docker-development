@@ -36,3 +36,24 @@ Please delete the `/mock` directory when regenerating.
 ## Api Mock Server
 
 [http/localhost:8000](http/localhost:8000)
+
+## Prism
+
+[http/localhost:8004](http/localhost:8004)
+
+## Deploy
+
+### AWS App Runner
+
+Setting Secrets.
+
+* `AWS_ACCESS_KEY_ID`
+* `AWS_SECRET_ACCESS_KEY`
+* `AWS_ECR_REPO_NAME`
+
+Use Github Actions.
+
+## Anything Else
+
+### CORS for Swagger Codegen
+* https://qiita.com/watanabeyt06-w/items/a164b1d31a0e156a2e68

@@ -19,11 +19,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Generate mock
-      run: docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli-v3 generate -l nodejs-server -i /local/swagger.yaml -o /local/mock/
+    # - name: Generate mock
+    #   run: docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli-v3 generate -l nodejs-server -i /local/swagger.yaml -o /local/mock/
 
-    - name: Generate Redoc
-      run: docker run --rm -v ${PWD}/:/local broothie/redoc-cli bundle /local/swagger.yaml -o /local/mock/redoc.html
+    # - name: Generate Redoc
+    #   run: docker run --rm -v ${PWD}/:/local broothie/redoc-cli bundle /local/swagger.yaml -o /local/mock/redoc.html
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
