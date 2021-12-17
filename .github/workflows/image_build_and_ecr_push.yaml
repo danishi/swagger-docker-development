@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - master
+    paths:
+      - swagger.yaml
 
 jobs:
   build-and-push:
